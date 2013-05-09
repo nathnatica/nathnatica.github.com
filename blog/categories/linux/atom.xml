@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-05-10T01:00:51+09:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[bash]]></title>
+    <link href="http://yoursite.com/blog/2011/11/22/bash/"/>
+    <updated>2011-11-22T03:48:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/22/bash</id>
+    <content type="html"><![CDATA[<h4>Shell Variables</h4>
+
+<p>$@  : <strong>single</strong> string that consists of all of the positional parameters<br/>
+$* : <strong>N(number of args)</strong> separate double-quoted positional parameter strings, which are separated by spaces<br/>
+$#  : number of positional parameters</p>
+
+<p>variables defined within functions are not local(means global)<br/>
+so use <code>local var1</code> in a function</p>
+
+<p>p.148</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Basic Linux Command]]></title>
+    <link href="http://yoursite.com/blog/2011/11/16/basic-linux-command/"/>
+    <updated>2011-11-16T22:28:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/16/basic-linux-command</id>
+    <content type="html"><![CDATA[<p><code>sh
+cd - # back to the previous directory
+</code>
+<code>sh
+cut -d: -f1 &lt; /etc/passwd # delimiter :, first field
+</code>
+<code>sh
+nice -n &lt;increment&gt; &lt;command&gt; # set priority (-20 to 20 : lowest prior. default 10)
+</code></p>
+
+<h4>History Expansion</h4>
+
+<p><code>sh
+!! # Refers to the last command  
+!string # Refers to the most recent command starting with string  
+^string1^string2 # Repeat the last command, replacing string1 with string2  
+</code></p>
+
+<p>기본적으로 <code>alias</code>는 커맨드줄의 처음에 밖에 사용할수 없지만 이퀄사인 오른쪽이 공백으로 끝나면 다음 단어도 alias치환할려고 한다.<br/>
+<code>sh .bash_profile
+alias cd='cd '
+alias longdir='/Users/nathnatica/dropbox/octopress/source/_post'
+</code> <br/>
+<code>sh
+cd longdir # success
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

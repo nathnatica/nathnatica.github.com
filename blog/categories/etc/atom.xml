@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: etc | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/etc/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-05-10T01:00:51+09:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Posting]]></title>
+    <link href="http://yoursite.com/blog/2011/11/15/posting/"/>
+    <updated>2011-11-15T00:00:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/15/posting</id>
+    <content type="html"><![CDATA[<h5>Markdown Basic</h5>
+
+<p><a href="http://en.wikipedia.org/wiki/Markdown">Markdown Wiki</a><br/>
+<a href="http://daringfireball.net/projects/markdown/syntax">Official Markdown project at Daring Fireball</a></p>
+
+<h5>Markdown Code Syntax</h5>
+
+<p><code>some code</code></p>
+
+<pre><code>`some code`  
+</code></pre>
+
+<h5>Octopress Code Block Syntax</h5>
+
+<pre><code>``` [language] [title] [url] [link text]
+some code
+```
+</code></pre>
+
+<h5>Octopress Posting</h5>
+
+<p><code>sh
+rake new_post["title"]  
+rake new_page[about] # creates source/about/index.markdown -&gt; site.com/about/index.html  
+rake new_page[about/me.html] # creates source/about/me.markdown -&gt; site.com/about/me.html  
+rake generate   
+rake preview  # and localhost:4000  
+rake deploy   
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

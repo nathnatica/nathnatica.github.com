@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: bash | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/bash/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-05-10T01:00:51+09:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[bash]]></title>
+    <link href="http://yoursite.com/blog/2011/11/22/bash/"/>
+    <updated>2011-11-22T03:48:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/22/bash</id>
+    <content type="html"><![CDATA[<h4>Shell Variables</h4>
+
+<p>$@  : <strong>single</strong> string that consists of all of the positional parameters<br/>
+$* : <strong>N(number of args)</strong> separate double-quoted positional parameter strings, which are separated by spaces<br/>
+$#  : number of positional parameters</p>
+
+<p>variables defined within functions are not local(means global)<br/>
+so use <code>local var1</code> in a function</p>
+
+<p>p.148</p>
+]]></content>
+  </entry>
+  
+</feed>

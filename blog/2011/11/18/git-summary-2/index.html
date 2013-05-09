@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git Branch Diff Merge Commit - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Branch long-running branches like &lsquo;master&rsquo;
+topic branches like bug-112, hotfix-3 1
+git branch &lt;target branch&gt; &lt;source branch&gt &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yoursite.com/blog/2011/11/18/git-summary-2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yoursite.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git Branch Diff Merge Commit</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-18T00:34:00+09:00" pubdate data-updated="true">Nov 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>Branch</h4>
+
+<ul>
+<li>long-running branches like &lsquo;master&rsquo;</li>
+<li>topic branches like bug-112, hotfix-3</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git branch &lt;target branch&gt; &lt;<span class="nb">source </span>branch&gt; <span class="c"># create  ex) git branch prs/pr-1138</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git branch <span class="c"># show local branch list</span>
+</span><span class='line'>git branch -a <span class="c"># show local and remote branch list</span>
+</span><span class='line'>git show-branch --more<span class="o">=</span>10 <span class="c"># show local branch history</span>
+</span><span class='line'>git show-branch -a <span class="c"># show local and remote branch history</span>
+</span><span class='line'><span class="c"># show partial branches</span>
+</span><span class='line'>git show-branch bug/pr-1 bug/pr-2
+</span><span class='line'>git show-branch bug/*
+</span><span class='line'>git branch --merged       <span class="c"># show merged branches with the checkouted branch</span>
+</span><span class='line'>git branch --no-merged  <span class="c"># show not merged branches</span>
+</span><span class='line'>git branch -d &lt;branch&gt; <span class="c"># delete</span>
+</span><span class='line'>git branch -D &lt;branch&gt; <span class="c"># force delete</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># create branch and checkout</span>
+</span><span class='line'>git checkout -b &lt;branch&gt;
+</span><span class='line'><span class="c"># change branch (if uncommited file exists, error occurs)</span>
+</span><span class='line'>git checkout &lt;branch&gt;
+</span><span class='line'><span class="c"># change branch and merge with uncommited files in working directory</span>
+</span><span class='line'>git checkout -m &lt;another branch&gt;
+</span><span class='line'><span class="c"># ignore data loss</span>
+</span><span class='line'>git checkout -f &lt;branch&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>delete branch
+</span><span class='line'>git branch -d &lt;branch&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># after accidently removing a branch or other ref,</span>
+</span><span class='line'><span class="c"># you can recover it by using </span>
+</span><span class='line'>git reflog
+</span><span class='line'>git fsck
+</span><span class='line'><span class="c"># and configuration options like</span>
+</span><span class='line'><span class="c">#gc.reflogExpire</span>
+</span><span class='line'><span class="c">#gc.pruneExpire</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h4>Diff</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># unified diff standardized format </span>
+</span><span class='line'>diff -u &lt;file1&gt; &lt;file2&gt;
+</span><span class='line'>
+</span><span class='line'><span class="c"># diff working directory and index</span>
+</span><span class='line'>git diff
+</span><span class='line'><span class="c"># diff working directory and given commit </span>
+</span><span class='line'>git diff &lt;commit&gt;
+</span><span class='line'><span class="c"># diff staged changes and given commit </span>
+</span><span class='line'>git diff --cached &lt;commit&gt;
+</span><span class='line'>git diff --staged &lt;commit&gt;
+</span><span class='line'><span class="c"># diff two arbitrary commits</span>
+</span><span class='line'>git diff &lt;commit1&gt; &lt;commit2&gt;
+</span><span class='line'><span class="c"># to get both staged and unstaged changes</span>
+</span><span class='line'>git diff HEAD
+</span><span class='line'><span class="c"># -S&quot;string&quot; searche</span>
+</span><span class='line'>git diff -S<span class="s2">&quot;octopus&quot;</span> master~50
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>diff_options</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># --M (detects renames and generates simplified output)</span>
+</span><span class='line'><span class="c"># -w or --ignore-all-space (ignore whitespaces)</span>
+</span><span class='line'><span class="c"># --stat (statistics about two trees)</span>
+</span><span class='line'>git diff --stat master~5 master &lt;directory&gt;
+</span><span class='line'><span class="c"># --color</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h4>Merge</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># merge other_branch to branch</span>
+</span><span class='line'>git checkout branch
+</span><span class='line'>git merge other_branch
+</span><span class='line'>
+</span><span class='line'><span class="c"># show conflicted files</span>
+</span><span class='line'>git ls-files -u
+</span><span class='line'>
+</span><span class='line'><span class="c"># don&#39;t use fast-forward merge (ff = lose branch history)</span>
+</span><span class='line'>git merge --no-ff other_branch
+</span><span class='line'>
+</span><span class='line'><span class="c"># abort merge before commit (restores working directory and indexed before merge operation)</span>
+</span><span class='line'>git reset --hard HEAD
+</span><span class='line'><span class="c"># abort or discard the merge after it has finished</span>
+</span><span class='line'>git reset --hard ORIGIN_HEAD
+</span><span class='line'><span class="c"># return to the original conflict state</span>
+</span><span class='line'>git checkout -m
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h4>Commmit</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># changes HEAD ref to point to the given commit, index, working directory unchanged</span>
+</span><span class='line'>git reset --soft &lt;commit&gt;
+</span><span class='line'><span class="c"># changes HEAD ref to point to the given commit, index changed as if you had just staged all the changes,  working directory unchanged(default)</span>
+</span><span class='line'>git reset --mixed &lt;commit&gt;
+</span><span class='line'><span class="c"># changes HEAD ref to point to the given commit, index, working directory changed </span>
+</span><span class='line'>git reset --hard &lt;commit&gt;
+</span><span class='line'><span class="c"># example1) unstaging</span>
+</span><span class='line'>git reset HEAD foo.c
+</span><span class='line'><span class="c"># exmaple2) eliminate top-most commit</span>
+</span><span class='line'>git reset HEAD^
+</span><span class='line'><span class="c"># alter the most recent commit (with current stage)</span>
+</span><span class='line'>git commit --amend
+</span><span class='line'>git commit --amend --author <span class="s2">&quot;me me &lt;me@me.com&gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># rebase is used to alter where a sequence of commit is based p.182</span>
+</span><span class='line'>git checkout &lt;branch&gt;
+</span><span class='line'>git rebase &lt;rebased&gt;
+</span><span class='line'><span class="c">#or</span>
+</span><span class='line'>git rebase &lt;rebased&gt; &lt;branch&gt;
+</span><span class='line'><span class="c"># situation like page.182 is often called &#39;forward porting&#39; &lt;branch&gt; is forward ported to the &lt;rebased&gt; branch</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># resume rebase operation after resolving conflicts</span>
+</span><span class='line'>git rebase --continue
+</span><span class='line'><span class="c"># abort rebase operation</span>
+</span><span class='line'>git rebase --abort
+</span><span class='line'>
+</span><span class='line'><span class="c"># reorder, edit, removing, squashing multiple commits, splitting commit</span>
+</span><span class='line'>git rebase -i &lt;to commit&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-18T00:34:00+09:00" pubdate data-updated="true">Nov 18<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yoursite.com/blog/2011/11/18/git-summary-2/" data-via="" data-counturl="http://yoursite.com/blog/2011/11/18/git-summary-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/17/git-summary-1/" title="Previous Post: Git Basic">&laquo; Git Basic</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/11/18/git-summary-3/" title="Next Post: Git Remote Repository">Git Remote Repository &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/22/bash/">bash</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/19/vim-plugins/">Vim Plugins</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/18/git-summary-4/">Git Etc</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/18/git-summary-3/">Git Remote Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/18/git-summary-2/">Git Branch Diff Merge Commit</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

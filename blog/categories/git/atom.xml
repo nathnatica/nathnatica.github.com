@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-05-10T01:00:51+09:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git Etc]]></title>
+    <link href="http://yoursite.com/blog/2011/11/18/git-summary-4/"/>
+    <updated>2011-11-18T00:34:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/18/git-summary-4</id>
+    <content type="html"><![CDATA[<h5>commit range</h5>
+
+<p>X..Y is mathmatically equivalent to ^X Y (means give me all commits that are reachable from Y, and don&rsquo;t give me any commit leading up to and including X)</p>
+
+<h5>finding commits</h5>
+
+<p>``` sh
+git bisect start</p>
+
+<h1>tell git the HEAD is broken</h1>
+
+<p>git bisect bad</p>
+
+<h1>similarly, tell git which version works</h1>
+
+<p>git bisect good</p>
+
+<h1>do something&hellip;</h1>
+
+<p>git bisect log
+git bisect visualize &mdash;pretty=oneline</p>
+
+<h1>end</h1>
+
+<p>git bisect reset
+```</p>
+
+<p>``` sh</p>
+
+<h1>using blame &ndash; tells who last modified each line of a file and which commit made the change</h1>
+
+<p>git blame -L 35, init/version.c
+```</p>
+
+<p>``` sh</p>
+
+<h1>using pickaxe -Ssting</h1>
+
+<p>git log -Sinclude &mdash;pretty=oneline &mdash;abbrev-commit init/version.c
+```</p>
+
+<p>``` sh</p>
+
+<h1>garbage collector</h1>
+
+<p>git gc
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Remote Repository]]></title>
+    <link href="http://yoursite.com/blog/2011/11/18/git-summary-3/"/>
+    <updated>2011-11-18T00:34:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/18/git-summary-3</id>
+    <content type="html"><![CDATA[<p>```</p>
+
+<h1>create bare repository</h1>
+
+<p>git clone &mdash;bare <bare repo>
+<code>
+</code></p>
+
+<h1>add remote repository name (add to .git/config)</h1>
+
+<p>git remote add <remote> <remote url></p>
+
+<h1>show remote repository list</h1>
+
+<p>git remote -v</p>
+
+<h1>show remote information</h1>
+
+<p>git remote show <remote></p>
+
+<h1>rename remote</h1>
+
+<p>git remote rename <current name> <new name>
+```
+remote branch : local branch for reflect status of repository which resides remote!!!<br/>
+depot : agreed-on authoritative copy repository, remote origin for all developers</p>
+
+<p>```</p>
+
+<h1>fetch &ndash; update remote branch automatically</h1>
+
+<h1>retrieves objects and their related metadata from a remote repository</h1>
+
+<p>git fetch <remote></p>
+
+<h1>fetch and merge changes into a local corresponding branch</h1>
+
+<p>git pull</p>
+
+<h1>transfers objects and their related metadata to a remote repository</h1>
+
+<p>git push</p>
+
+<h1>remove remote and remote branch</h1>
+
+<p>git remote rm <remote></p>
+
+<h1>remove remote branch which does not exist in remote repository</h1>
+
+<p>git remote prune <remote></p>
+
+<h1>show simbol ref list of repository</h1>
+
+<p>git show-ref</p>
+
+<h1>show simbol ref list of remote repository</h1>
+
+<p>git ls-remote <remote>
+```</p>
+
+<h5>ex) creating authoritative repository (last .git part is convention)</h5>
+
+<p><code>
+git clone --bare &lt;git repository path&gt; new_repo.git
+cd &lt;git folder&gt;
+git remote add origin &lt;path to remote repository&gt;
+git remote update
+</code></p>
+
+<h4>repositories with anonymous read access</h4>
+
+<h5>publishing repositories with git-daemon</h5>
+
+<p>first, create file named <code>git-daemon-export-ok</code> in the top-level directory of the bare repository
+add this line to <code>/etc/services</code><br/>
+<code>
+git 9418/tcp
+</code>
+add this line to <code>/etc/initd.conf</code> <br/>
+<code>
+git stream tcp nowait nobody /usr/bin/git-daemon
+git-daemon --inetd --verbose --export-all
+--base-path=/pub/git
+</code></p>
+
+<p>or multiple, virtually hostd git-daemon  %H:hostname, %D:directorypath
+<code>
+git stream tcp nowait nobody /usr/bin/git-daemon
+git-daemon --inetd --verbose --export-all
+--interpolated-path=/pub/%H%D
+</code>
+<code>/pub/git.example.com/software/</code><br/>
+<code>/pub/www.example.org/software/</code><br/>
+will be accessed with<br/>
+<code>git://git.example.com/software/repository.git</code><br/>
+<code>git://www.example.org/software/repository.git</code></p>
+
+<p>if using xinetd, then <code>/etc/xinetd.d/git-daemon</code><br/>
+```</p>
+
+<h1>description: The git server offers access to git repositories</h1>
+
+<p>service git
+{</p>
+
+<pre><code>disable = no
+type = UNLISTED
+port = 9418
+socket_type = stream
+wait = no
+user = nobody
+server = /usr/bin/git-daemon
+server_args = --inetd --export-all --base-path=/pub/git
+log_on_failure += USERID
+</code></pre>
+
+<p>}
+```</p>
+
+<h5>publishing repositories with using HTTP daemon</h5>
+
+<p>setup <code>gitweb</code>
+<code>
+cd /path/to/bare/repo.git
+mv hooks/post-update.sample hooks/post-update
+chmod 755 hooks/post-update
+</code>
+copy the bare repository into a directory served by a HTTP daemon</p>
+
+<p>```</p>
+
+<h1>repositories with anonymous write access (use fo private LAN)</h1>
+
+<h1>when use git-daemon</h1>
+
+<p>[daemon]
+receivepack = true
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Branch Diff Merge Commit]]></title>
+    <link href="http://yoursite.com/blog/2011/11/18/git-summary-2/"/>
+    <updated>2011-11-18T00:34:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/18/git-summary-2</id>
+    <content type="html"><![CDATA[<h4>Branch</h4>
+
+<ul>
+<li>long-running branches like &lsquo;master&rsquo;</li>
+<li>topic branches like bug-112, hotfix-3
+<code>sh
+git branch &lt;target branch&gt; &lt;source branch&gt; # create  ex) git branch prs/pr-1138
+</code>
+``` sh
+git branch # show local branch list
+git branch -a # show local and remote branch list
+git show-branch &mdash;more=10 # show local branch history
+git show-branch -a # show local and remote branch history
+
+<h1>show partial branches</h1>
+
+<p>git show-branch bug/pr-1 bug/pr-2
+git show-branch bug/*
+git branch &mdash;merged     # show merged branches with the checkouted branch
+git branch &mdash;no-merged  # show not merged branches
+git branch -d <branch> # delete
+git branch -D <branch> # force delete
+```</p></li>
+</ul>
+
+
+<p>``` sh</p>
+
+<h1>create branch and checkout</h1>
+
+<p>git checkout -b <branch></p>
+
+<h1>change branch (if uncommited file exists, error occurs)</h1>
+
+<p>git checkout <branch></p>
+
+<h1>change branch and merge with uncommited files in working directory</h1>
+
+<p>git checkout -m <another branch></p>
+
+<h1>ignore data loss</h1>
+
+<p>git checkout -f <branch>
+```</p>
+
+<p><code>sh
+delete branch  
+git branch -d &lt;branch&gt;
+</code></p>
+
+<p>``` sh</p>
+
+<h1>after accidently removing a branch or other ref,</h1>
+
+<h1>you can recover it by using</h1>
+
+<p>git reflog
+git fsck</p>
+
+<h1>and configuration options like</h1>
+
+<h1>gc.reflogExpire</h1>
+
+<h1>gc.pruneExpire</h1>
+
+<p>```</p>
+
+<hr />
+
+<h4>Diff</h4>
+
+<p>``` sh</p>
+
+<h1>unified diff standardized format</h1>
+
+<p>diff -u <file1> <file2></p>
+
+<h1>diff working directory and index</h1>
+
+<p>git diff</p>
+
+<h1>diff working directory and given commit</h1>
+
+<p>git diff <commit></p>
+
+<h1>diff staged changes and given commit</h1>
+
+<p>git diff &mdash;cached <commit>
+git diff &mdash;staged <commit></p>
+
+<h1>diff two arbitrary commits</h1>
+
+<p>git diff <commit1> <commit2></p>
+
+<h1>to get both staged and unstaged changes</h1>
+
+<p>git diff HEAD</p>
+
+<h1>-S"string" searche</h1>
+
+<p>git diff -S"octopus" master~50
+```</p>
+
+<p>``` sh diff_options</p>
+
+<h1>&mdash;M (detects renames and generates simplified output)</h1>
+
+<h1>-w or &mdash;ignore-all-space (ignore whitespaces)</h1>
+
+<h1>&mdash;stat (statistics about two trees)</h1>
+
+<p>git diff &mdash;stat master~5 master <directory></p>
+
+<h1>&mdash;color</h1>
+
+<p>```</p>
+
+<hr />
+
+<h4>Merge</h4>
+
+<p>``` sh</p>
+
+<h1>merge other_branch to branch</h1>
+
+<p>git checkout branch
+git merge other_branch</p>
+
+<h1>show conflicted files</h1>
+
+<p>git ls-files -u</p>
+
+<h1>don&rsquo;t use fast-forward merge (ff = lose branch history)</h1>
+
+<p>git merge &mdash;no-ff other_branch</p>
+
+<h1>abort merge before commit (restores working directory and indexed before merge operation)</h1>
+
+<p>git reset &mdash;hard HEAD</p>
+
+<h1>abort or discard the merge after it has finished</h1>
+
+<p>git reset &mdash;hard ORIGIN_HEAD</p>
+
+<h1>return to the original conflict state</h1>
+
+<p>git checkout -m
+```</p>
+
+<hr />
+
+<h4>Commmit</h4>
+
+<p>``` sh</p>
+
+<h1>changes HEAD ref to point to the given commit, index, working directory unchanged</h1>
+
+<p>git reset &mdash;soft <commit></p>
+
+<h1>changes HEAD ref to point to the given commit, index changed as if you had just staged all the changes,  working directory unchanged(default)</h1>
+
+<p>git reset &mdash;mixed <commit></p>
+
+<h1>changes HEAD ref to point to the given commit, index, working directory changed</h1>
+
+<p>git reset &mdash;hard <commit></p>
+
+<h1>example1) unstaging</h1>
+
+<p>git reset HEAD foo.c</p>
+
+<h1>exmaple2) eliminate top-most commit</h1>
+
+<p>git reset HEAD^</p>
+
+<h1>alter the most recent commit (with current stage)</h1>
+
+<p>git commit &mdash;amend
+git commit &mdash;amend &mdash;author &ldquo;me me <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#109;&#101;&#64;&#x6d;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#109;&#x65;&#64;&#x6d;&#101;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo;
+<code>
+</code> sh</p>
+
+<h1>rebase is used to alter where a sequence of commit is based p.182</h1>
+
+<p>git checkout <branch>
+git rebase <rebased></p>
+
+<h1>or</h1>
+
+<p>git rebase <rebased> <branch></p>
+
+<h1>situation like page.182 is often called &lsquo;forward porting&rsquo; <branch> is forward ported to the <rebased> branch</h1>
+
+<h1>resume rebase operation after resolving conflicts</h1>
+
+<p>git rebase &mdash;continue</p>
+
+<h1>abort rebase operation</h1>
+
+<p>git rebase &mdash;abort</p>
+
+<h1>reorder, edit, removing, squashing multiple commits, splitting commit</h1>
+
+<p>git rebase -i <to commit>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Basic]]></title>
+    <link href="http://yoursite.com/blog/2011/11/17/git-summary-1/"/>
+    <updated>2011-11-17T23:27:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/17/git-summary-1</id>
+    <content type="html"><![CDATA[<h5>Install</h5>
+
+<p>``` <br/>
+$brew install git # mac<br/>
+$apt-get install git-core # ubuntu family<br/>
+$yum install git-core # fedora family</p>
+
+<h1>using macport</h1>
+
+<p>sudo port install git-core +svn +doc +bash_completion +gitweb
+```</p>
+
+<h5>Setting</h5>
+
+<p>```</p>
+
+<h1>.bash_profile</h1>
+
+<p>export GIT_EDITOR=vim # commit message editor
+export GIT_AUTHOR_NAME=XX
+export GIT_AUTHOR_EMAIL=XX
+<code>
+or use `git config` command  
+</code> sh<br/>
+git config &mdash;unset &mdash;global user.email
+```</p>
+
+<h5>.gitignore file sample</h5>
+
+<p>```</p>
+
+<h1>.gitignore</h1>
+
+<p>ignore-me-everywhere.txt<br/>
+.DS_Store<br/>
+ignore-dir/ # ignore directory</p>
+
+<h1>using wild cards</h1>
+
+<p><em>.[oa]<br/>
+tmp/**/</em><br/>
+log/*<br/>
+```</p>
+
+<p>```
+git init
+git clone <source repository> <target directory>
+git status</p>
+
+<h1>see indexed files</h1>
+
+<p>git ls-files -s
+git add <filename>
+git add <directory></p>
+
+<h1>currnet directory indexing</h1>
+
+<p>git add .
+```</p>
+
+<p>```</p>
+
+<h1>commit</h1>
+
+<p>git commit -m &ldquo;&rdquo; &mdash;author=&ldquo;My Name <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x61;&#97;&#x61;&#64;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#97;&#97;&#97;&#x40;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo;
+git commit index.html
+git commit -a -m &ldquo;commit all modified(indexing and commit at once)&rdquo;
+```</p>
+
+<p>```</p>
+
+<h1>show</h1>
+
+<p>git log
+git log -1 &mdash;pretty=oneline 534adf
+git log -p -2 # shows patch for recent 2 commits
+git log &mdash;pretty=short &mdash;abbrev-commit &mdash;stat master~12..master~10</p>
+
+<h1>other log options</h1>
+
+<h1>&mdash;relative-date</h1>
+
+<h1>&mdash;pretty=format:&ldquo;%h %s&rdquo;  # shows abbrev-hash and subject</h1>
+
+<h1>&mdash;since=2.weeks</h1>
+
+<h1>&mdash; <path name> <or file name></h1>
+
+<p>git show adf67da6f8dadf5af45a
+git show-branch &mdash;more=10
+git diff <old commit id> <new commit id>
+git config -l # show config
+```</p>
+
+<p>```</p>
+
+<h1>remove</h1>
+
+<h1>to untrack file (and delete from working directory)</h1>
+
+<p>git rm noneed.html
+git rm log/*.log # delete *.log</p>
+
+<h1>delete from index and working directory</h1>
+
+<p>git rm -f <file></p>
+
+<h1>delete from index only</h1>
+
+<p>git rm &mdash;cached <file> # unstage file
+git reset HEAD &mdash; <file>
+```</p>
+
+<p>```</p>
+
+<h1>rename</h1>
+
+<p>mv foo.html bar.html
+git rm foo.html
+git add bar.html</p>
+
+<h1>or</h1>
+
+<p>git mv foo.html bar.html
+```</p>
+
+<p>```</p>
+
+<h1>configure alias</h1>
+
+<p>git config &mdash;global alias.show-graph &lsquo;log &mdash;graph &mdash;abbrev-commit &mdash;pretty=oneline &mdash;decorate&rsquo;
+```</p>
+
+<p>```</p>
+
+<h1>Lightweight Tag</h1>
+
+<p>git tag v0.1  # create tag
+git tag -m"Tag Version 1.0" V1.0 3ed354 # create tag for commit 3ed354
+git tag # show tag list
+git show v0.1 # show tag info
+```</p>
+
+<p>```</p>
+
+<h1>diff</h1>
+
+<p>git diff &mdash;cached</p>
+
+<h1>remove index and working copy both</h1>
+
+<p>git rm filename</p>
+
+<h1>to recover from deleted file</h1>
+
+<p>git checkout HEAD &mdash; filename
+git checkout &mdash; filename
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

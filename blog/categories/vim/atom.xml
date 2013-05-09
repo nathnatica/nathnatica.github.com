@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-05-10T01:00:51+09:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim Plugins]]></title>
+    <link href="http://yoursite.com/blog/2011/11/19/vim-plugins/"/>
+    <updated>2011-11-19T01:05:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/19/vim-plugins</id>
+    <content type="html"><![CDATA[<h3>vundle</h3>
+
+<p>Introduction  <br/>
+<a href="http://kldp.org/node/125263">vim 사용자를 위한 플러그인 매니저 vundle 을 소개 합니다.</a></p>
+
+<p>Install<br/>
+<a href="https://github.com/gmarik/vundle">gmarik/vundle &ndash; GitHub</a></p>
+
+<p>Basic Commands<br/>
+<code>
+:help vundle
+:BundleList # shows installed bundle list
+</code>
+``` sh install new bundle
+:BundleSearch <keyword></p>
+
+<h1>press &lsquo;i&rsquo; to install selected an item</h1>
+
+<h1>and</h1>
+
+<p>:BundleInstall
+<code>``
+don't forget adding</code>Bundle &lsquo;bundleName&rsquo;<code>in the</code>.vimrc`file.</p>
+
+<p><code>sh update bundle
+:BundleInstall!
+</code>
+<code>sh delete bundle
+:BundleClean # deletes bundles which are not listed on .vimrc
+</code></p>
+
+<hr />
+
+<p>``` sh install
+:BundleSearch Align # and install</p>
+
+<h1>align with separator &lsquo;=&rsquo;</h1>
+
+<h1>:&lsquo;&lt;,&rsquo;>Align =</h1>
+
+<p>:BundleSearch Markdown-syntax</p>
+
+<p>:BundleSearch closingtag.vim  # Ctlr+&ndash; to create a matching closing tag</p>
+
+<p>:BundleSearch bufexplorer.zip</p>
+
+<p>:BundleSearch snipMate</p>
+
+<p>:BundleSearch AutoClose</p>
+
+<p>:BundleSearch ZoomWin # &lt;c-w-o> to toggle current window zoom
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

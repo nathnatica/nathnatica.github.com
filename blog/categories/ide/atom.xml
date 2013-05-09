@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ide | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/ide/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-05-10T01:00:51+09:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Intellij Hotkey]]></title>
+    <link href="http://yoursite.com/blog/2011/11/17/intellij-hotkey/"/>
+    <updated>2011-11-17T21:31:00+09:00</updated>
+    <id>http://yoursite.com/blog/2011/11/17/intellij-hotkey</id>
+    <content type="html"><![CDATA[<p><a href="http://www.javacodegeeks.com/2011/11/whats-cool-in-intellijidea-part-i.html">read more</a></p>
+
+<p>Alt+Shift+N > Goto Class<br/>
+Ctrl+Shift+N > Goto File<br/>
+Ctrl+Shift+Alt+N    Goto Symbol</p>
+
+<p>Alt+Home > Show Navigation Bar<br/>
+Shift+Home > Show Navigation Bar(custom added)</p>
+
+<p>Ctrl+E > Recent Files<br/>
+Ctrl+Shift+E > Recently Changed Files</p>
+
+<p>Ctrl+Shift+I > Quick Definition View (in view)<br/>
+Ctrl+Shift+I > Code Implement Methods (custom deleted)</p>
+
+<p>Ctrl+Alt+B > Implementations<br/>
+Ctrl+T > Implementations</p>
+
+<p>Alt+F7 > Find Usage</p>
+
+<p>Ctrl+Shift+F7 > Toggle Highlight</p>
+
+<p>Ctrl+Shift+# > Toggle Bookmark<br/>
+Ctrl+# > Goto Bookmark</p>
+
+<p>Ctrl+J > Insert Live Template (iter, itar, ifn, inn, soutv, &hellip;)<br/>
+Ctrl+Alt+T > Surround With</p>
+
+<p>Ctrl+Shift+W > Window Close All(custom added?)</p>
+
+<p>Shift+F10 > Restart Server<br/>
+Ctrl+F9 > Resume Program(+Shift select &ndash;> RunMode)</p>
+]]></content>
+  </entry>
+  
+</feed>
